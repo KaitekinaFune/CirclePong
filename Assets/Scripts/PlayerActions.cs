@@ -20,15 +20,15 @@ public class @PlayerActions : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""d0918781-1552-4bf3-8523-e8c255db9687"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Shift"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""b97930fd-52c2-47bc-95e0-3749ed63a45d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -44,8 +44,16 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Shift2"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""2d82d993-4880-4e48-b478-53a4f6fd7c1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RestartButton"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""65192774-f1bf-43bc-a39e-c06138bc37d4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -150,6 +158,28 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""Shift2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62f8682a-e323-4acd-96b1-25d2f00cb4fd"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb579f70-ea89-467f-bc60-d7978cb551dd"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,6 +192,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         m_Gameplay_Shift = m_Gameplay.FindAction("Shift", throwIfNotFound: true);
         m_Gameplay_Move2 = m_Gameplay.FindAction("Move2", throwIfNotFound: true);
         m_Gameplay_Shift2 = m_Gameplay.FindAction("Shift2", throwIfNotFound: true);
+        m_Gameplay_RestartButton = m_Gameplay.FindAction("RestartButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -215,6 +246,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Shift;
     private readonly InputAction m_Gameplay_Move2;
     private readonly InputAction m_Gameplay_Shift2;
+    private readonly InputAction m_Gameplay_RestartButton;
     public struct GameplayActions
     {
         private @PlayerActions m_Wrapper;
@@ -223,6 +255,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         public InputAction @Shift => m_Wrapper.m_Gameplay_Shift;
         public InputAction @Move2 => m_Wrapper.m_Gameplay_Move2;
         public InputAction @Shift2 => m_Wrapper.m_Gameplay_Shift2;
+        public InputAction @RestartButton => m_Wrapper.m_Gameplay_RestartButton;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -244,6 +277,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @Shift2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift2;
                 @Shift2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift2;
                 @Shift2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift2;
+                @RestartButton.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestartButton;
+                @RestartButton.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestartButton;
+                @RestartButton.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestartButton;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -260,6 +296,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @Shift2.started += instance.OnShift2;
                 @Shift2.performed += instance.OnShift2;
                 @Shift2.canceled += instance.OnShift2;
+                @RestartButton.started += instance.OnRestartButton;
+                @RestartButton.performed += instance.OnRestartButton;
+                @RestartButton.canceled += instance.OnRestartButton;
             }
         }
     }
@@ -270,5 +309,6 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         void OnShift(InputAction.CallbackContext context);
         void OnMove2(InputAction.CallbackContext context);
         void OnShift2(InputAction.CallbackContext context);
+        void OnRestartButton(InputAction.CallbackContext context);
     }
 }

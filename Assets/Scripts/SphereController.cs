@@ -22,7 +22,7 @@ public class SphereController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(seconds);
 		rb.velocity = (transform.up * ballSpeed);
-		Destroy(arrow);
+		arrow.SetActive(false);
 	}
 	void OnCollisionEnter(Collision collision)
 	{

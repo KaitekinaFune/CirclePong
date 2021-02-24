@@ -7,15 +7,15 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "d0918781-1552-4bf3-8523-e8c255db9687",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
                 {
                     "name": "Shift",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "b97930fd-52c2-47bc-95e0-3749ed63a45d",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -31,8 +31,16 @@
                 },
                 {
                     "name": "Shift2",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "2d82d993-4880-4e48-b478-53a4f6fd7c1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RestartButton",
+                    "type": "PassThrough",
+                    "id": "65192774-f1bf-43bc-a39e-c06138bc37d4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -135,6 +143,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shift2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62f8682a-e323-4acd-96b1-25d2f00cb4fd",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RestartButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb579f70-ea89-467f-bc60-d7978cb551dd",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RestartButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

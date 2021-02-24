@@ -7,6 +7,9 @@ public class Player1Controller : MonoBehaviour
     PlayerActions Input;
 	public Slider staminaBar;
 
+	public MenuScript GameManager;
+	public Transform GameOverScreen;
+
 	public float maxStamina = 100f;
 	private float currentStamina;
 
@@ -24,11 +27,21 @@ public class Player1Controller : MonoBehaviour
 		Input = new PlayerActions();
 		Input.Gameplay.Shift.started += _ => onShiftPress();
 		Input.Gameplay.Shift.canceled += _ => onShiftRelease();
+		Input.Gameplay.RestartButton.performed += _ => tryRestart();
 		InvokeRepeating("IncreaseSize", 1f, 1f);
 		currentStamina = maxStamina;
 		staminaBar.maxValue = maxStamina;
 		staminaBar.value = currentStamina;
 	}
+
+	void tryRestart()
+	{
+		if (GameOverScreen.gameObject.activeSelf)
+		{
+			GameManager.RestartLevel();
+		}
+	}
+
     void OnEnable()
 	{
 		Input.Enable();
