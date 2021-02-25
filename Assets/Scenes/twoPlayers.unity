@@ -268,8 +268,8 @@ MonoBehaviour:
   staminaBar: {fileID: 1459561490}
   GameManager: {fileID: 1976830059}
   GameOverScreen: {fileID: 239434124}
-  maxStamina: 100
-  rotationSpeed: 50
+  maxStamina: 70
+  rotationSpeed: 40
 --- !u!4 &129131164
 Transform:
   m_ObjectHideFlags: 0
@@ -2428,8 +2428,8 @@ MonoBehaviour:
   staminaBar: {fileID: 596995993}
   GameManager: {fileID: 1976830059}
   GameOverScreen: {fileID: 239434124}
-  maxStamina: 100
-  rotationSpeed: 50
+  maxStamina: 70
+  rotationSpeed: 40
 --- !u!1 &1266995206
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,7 +3476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53da93a7cd446d4796a7b3d1a237e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 4
+  ballSpeed: 4.25
   startDelay: 1
   arrow: {fileID: 46496679}
 --- !u!212 &1721927044
