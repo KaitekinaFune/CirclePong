@@ -6,7 +6,7 @@ public class GameOver1P : MonoBehaviour
 	public Transform GameOverScreen;
 	public ScoreScript p1;
 	public TextMeshProUGUI ScoreText;
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
 		SphereController sphere = collision.transform.GetComponent<SphereController>();
 		if (sphere != null)

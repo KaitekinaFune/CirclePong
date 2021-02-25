@@ -6,7 +6,6 @@ public class Player1Controller : MonoBehaviour
 {
     PlayerActions Input;
 	public Slider staminaBar;
-
 	public MenuScript GameManager;
 	public Transform GameOverScreen;
 
@@ -28,10 +27,14 @@ public class Player1Controller : MonoBehaviour
 		Input.Gameplay.Shift.started += _ => onShiftPress();
 		Input.Gameplay.Shift.canceled += _ => onShiftRelease();
 		Input.Gameplay.RestartButton.performed += _ => tryRestart();
-		InvokeRepeating("IncreaseSize", 1f, 1f);
+		InvokeRepeating("DecreaseSize", 3f, 1f);
 		currentStamina = maxStamina;
 		staminaBar.maxValue = maxStamina;
 		staminaBar.value = currentStamina;
+	}
+    void OnEnable()
+	{
+		Input.Enable();
 	}
 
 	void tryRestart()
@@ -42,10 +45,6 @@ public class Player1Controller : MonoBehaviour
 		}
 	}
 
-    void OnEnable()
-	{
-		Input.Enable();
-	}
 	void onDisable()
 	{
 		Input.Disable();
@@ -78,7 +77,8 @@ public class Player1Controller : MonoBehaviour
 			rotationSpeed = initRotationSpeed;
 		}
 		float checkRotation = transform.rotation.eulerAngles.z + rotationValue;
-		if (checkRotation >= 195f && checkRotation <= 345f)
+		Debug.Log(checkRotation);
+		if (checkRotation >= 190f && checkRotation <= 350f)
 			transform.Rotate(Vector3.forward, rotationValue * rotationSpeed * Time.deltaTime);
 	}
 
@@ -95,15 +95,15 @@ public class Player1Controller : MonoBehaviour
 			regen = StartCoroutine(RegenStamina());
 		}
 	}
-	void IncreaseSize()
+	void DecreaseSize()
 	{
-		if (transform.localScale.x <= 0.51f)
+		if (transform.localScale.x <= 0.41f)
 			return;
 		transform.localScale = new Vector3(transform.localScale.x - 0.01f, transform.localScale.y, transform.localScale.z);
 	}
 	private IEnumerator RegenStamina()
 	{
-		yield return new WaitForSeconds(1.2f);
+		yield return new WaitForSeconds(0.5f);
 
 		while(currentStamina < maxStamina)
 		{
@@ -112,11 +112,6 @@ public class Player1Controller : MonoBehaviour
 			yield return regenTick;
 		}
 		regen = null;
-	}
-
-	void OnCollisionEnter(Collision collision)
-	{
-		Player2Controller P2 = collision.transform.GetComponent<Player2Controller>();
 	}
 
 }

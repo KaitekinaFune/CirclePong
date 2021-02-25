@@ -7,10 +7,8 @@ public class GameOver : MonoBehaviour
 	public GameOverScore _gameOver;
 	public ScoreScript p1;
 	public ScoreScript p2;
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
-
-
 		SphereController sphere = collision.transform.GetComponent<SphereController>();
 		if (sphere != null)
 		{
@@ -19,7 +17,7 @@ public class GameOver : MonoBehaviour
 			_gameOver.leftSide = collision.transform.position.x < 0;
 			_gameOver.SetScore();
 			GameOverScreen.gameObject.SetActive(true);
-			Destroy(sphere);
+			collision.gameObject.SetActive(false);
 		}
 	}
 }

@@ -13,5 +13,5 @@ EditorBuildSettings:
     guid: 0872e5c20e60c944aa53796843292fdb
   - enabled: 1
     path: Assets/Scenes/twoPlayers.unity
-    guid: bfd68a596c7fb424bafe928ff36b0341
+    guid: d0110a41ae4ca39408cd850077f7a156
   m_configObjects: {}

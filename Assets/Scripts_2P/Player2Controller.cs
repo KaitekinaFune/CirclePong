@@ -6,6 +6,8 @@ public class Player2Controller : MonoBehaviour
 {
     PlayerActions Input;
 	public Slider staminaBar;
+	public MenuScript GameManager;
+	public Transform GameOverScreen;
 
 	public float maxStamina = 100f;
 	private float currentStamina;
@@ -24,7 +26,8 @@ public class Player2Controller : MonoBehaviour
 		Input = new PlayerActions();
 		Input.Gameplay.Shift2.started += _ => onShiftPress();
 		Input.Gameplay.Shift2.canceled += _ => onShiftRelease();
-		InvokeRepeating("IncreaseSize", 1f, 1f);
+		Input.Gameplay.RestartButton.performed += _ => tryRestart();
+		InvokeRepeating("DecreaseSize", 3f, 1f);
 		currentStamina = maxStamina;
 		staminaBar.maxValue = maxStamina;
 		staminaBar.value = currentStamina;
@@ -33,6 +36,15 @@ public class Player2Controller : MonoBehaviour
 	{
 		Input.Enable();
 	}
+
+	void tryRestart()
+	{
+		if (GameOverScreen.gameObject.activeSelf)
+		{
+			GameManager.RestartLevel();
+		}
+	}
+
 	void onDisable()
 	{
 		Input.Disable();
@@ -65,7 +77,7 @@ public class Player2Controller : MonoBehaviour
 			rotationSpeed = initRotationSpeed;
 		}
 		float checkRotation = transform.rotation.eulerAngles.z + rotationValue;
-		if (checkRotation >= 15f && checkRotation <= 165f)
+		if (checkRotation >= 10f && checkRotation <= 170f)
 			transform.Rotate(Vector3.forward, rotationValue * rotationSpeed * Time.deltaTime);
 	}
 
@@ -82,15 +94,15 @@ public class Player2Controller : MonoBehaviour
 			regen = StartCoroutine(RegenStamina());
 		}
 	}
-	void IncreaseSize()
+	void DecreaseSize()
 	{
-		if (transform.localScale.x <= 0.51f)
+		if (transform.localScale.x <= 0.41f)
 			return;
 		transform.localScale = new Vector3(transform.localScale.x - 0.01f, transform.localScale.y, transform.localScale.z);
 	}
 	private IEnumerator RegenStamina()
 	{
-		yield return new WaitForSeconds(1.2f);
+		yield return new WaitForSeconds(0.5f);
 
 		while(currentStamina < maxStamina)
 		{

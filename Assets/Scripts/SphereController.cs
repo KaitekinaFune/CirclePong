@@ -4,7 +4,7 @@ using System.Collections;
 public class SphereController : MonoBehaviour
 {
 	int randomRotation;
-	Rigidbody rb;
+	Rigidbody2D rb;
 	public float ballSpeed;
 	AudioSource pongSound;
 	public float startDelay = 1.5f;
@@ -12,10 +12,9 @@ public class SphereController : MonoBehaviour
     void Start()
     {
 		pongSound = GetComponent<AudioSource>();
-		rb = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody2D>();
 		randomRotation = Random.Range(0, 361);
         transform.Rotate(transform.forward * randomRotation);
-
 		StartCoroutine(WaitToStart(startDelay));
     }
 	IEnumerator WaitToStart(float seconds)
@@ -24,7 +23,7 @@ public class SphereController : MonoBehaviour
 		rb.velocity = (transform.up * ballSpeed);
 		arrow.SetActive(false);
 	}
-	void OnCollisionEnter(Collision collision)
+	void OnCollisionEnter2D(Collision2D collision)
 	{
 		ScoreScript score = collision.transform.GetComponent<ScoreScript>();
 		if (score != null)

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	public MenuScript GameManager;
 	public Transform GameOverScreen;
 
-	private float maxStamina = 100f;
+	public float maxStamina = 100f;
 	private float currentStamina;
 
 	private WaitForSeconds regenTick = new WaitForSeconds(0.02f);
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 		Input.Gameplay.Shift.started += _ => onShiftPress();
 		Input.Gameplay.Shift.canceled += _ => onShiftRelease();
 		Input.Gameplay.RestartButton.performed += _ => tryRestart();
-		InvokeRepeating("IncreaseSize", 1f, 1f);
+		InvokeRepeating("DecreaseSize", 3f, 1f);
 		currentStamina = maxStamina;
 		staminaBar.maxValue = maxStamina;
 		staminaBar.value = currentStamina;
@@ -92,9 +92,9 @@ public class PlayerController : MonoBehaviour
 			regen = StartCoroutine(RegenStamina());
 		}
 	}
-	void IncreaseSize()
+	void DecreaseSize()
 	{
-		if (transform.localScale.x <= 0.51f)
+		if (transform.localScale.x <= 0.41f)
 			return;
 		transform.localScale = new Vector3(transform.localScale.x - 0.01f, transform.localScale.y, transform.localScale.z);
 	}
