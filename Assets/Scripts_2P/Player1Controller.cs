@@ -77,7 +77,6 @@ public class Player1Controller : MonoBehaviour
 			rotationSpeed = initRotationSpeed;
 		}
 		float checkRotation = transform.rotation.eulerAngles.z + rotationValue;
-		Debug.Log(checkRotation);
 		if (checkRotation >= 190f && checkRotation <= 350f)
 			transform.Rotate(Vector3.forward, rotationValue * rotationSpeed * Time.deltaTime);
 	}
