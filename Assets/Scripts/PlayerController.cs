@@ -1,114 +1,81 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerActions Input;
-	public Slider staminaBar;
-	public MenuScript GameManager;
-	public Transform GameOverScreen;
-
-	public float maxStamina = 100f;
-	private float currentStamina;
-
-	private WaitForSeconds regenTick = new WaitForSeconds(0.02f);
-	private Coroutine regen;
+	public static event System.Action restartGame;
 
 	public float rotationSpeed;
-	float initRotationSpeed;
-	float rotationValue;
-	bool isShiftPressed;
+	private float rotationDirection;
 
-	void Awake()
+	public float playerSizeThreshold = 0.6f;
+
+	bool isGameOver;
+
+	PlayerActions input;
+
+	private void Awake()
 	{
-		initRotationSpeed = rotationSpeed;
-		Input = new PlayerActions();
-		Input.Gameplay.Shift.started += _ => onShiftPress();
-		Input.Gameplay.Shift.canceled += _ => onShiftRelease();
-		Input.Gameplay.RestartButton.performed += _ => tryRestart();
-		InvokeRepeating("DecreaseSize", 3f, 1f);
-		currentStamina = maxStamina;
-		staminaBar.maxValue = maxStamina;
-		staminaBar.value = currentStamina;
-	}
-    void OnEnable()
-	{
-		Input.Enable();
+		input = new PlayerActions();
+
+		OnGameStart();
 	}
 
-	void tryRestart()
+	void OnGameStart()
 	{
-		if (GameOverScreen.gameObject.activeSelf)
+		isGameOver = false;
+
+		transform.rotation = Quaternion.Euler(Vector3.zero);
+		transform.localScale = Vector3.one;
+	}
+
+	private void OnMove(InputAction.CallbackContext ctx)
+	{
+		rotationDirection = ctx.ReadValue<float>();
+	}
+
+	private void Update()
+	{
+		if (!isGameOver && rotationSpeed != 0)
 		{
-			GameManager.RestartLevel();
+			transform.Rotate(Vector3.forward * rotationSpeed * rotationDirection * Time.deltaTime);
+		}
+
+		if (transform.localScale.x > playerSizeThreshold)
+		{
+			transform.localScale -= (Vector3.right/100 * Time.deltaTime);
 		}
 	}
 
-	void onDisable()
+	private void OnRestart(InputAction.CallbackContext ctx)
 	{
-		Input.Disable();
-	}
-	void onShiftPress()
-	{
-		isShiftPressed = true;
-	}
-	void onShiftRelease()
-	{
-		isShiftPressed = false;
-	}
-    void FixedUpdate()
-    {
-		rotationValue = Input.Gameplay.Move.ReadValue<float>();
-		if (isShiftPressed)
+		if (isGameOver)
 		{
-			if (currentStamina >= 1f && rotationValue != 0)
-			{
-				UseStamina(1f);
-				rotationSpeed = initRotationSpeed * 2;
-			}
-			else
-			{
-				rotationSpeed = initRotationSpeed;
-			}
-		}
-		else
-		{
-			rotationSpeed = initRotationSpeed;
-		}
-		transform.Rotate(Vector3.forward, rotationValue * rotationSpeed * Time.deltaTime);
-	}
-
-	public void UseStamina(float amount)
-	{
-		if(currentStamina - amount >= 0)
-		{
-			currentStamina -= amount;
-			staminaBar.value = currentStamina;
-
-			if (regen != null)
-				StopCoroutine(regen);
-
-			regen = StartCoroutine(RegenStamina());
+			restartGame?.Invoke();
+			OnGameStart();
 		}
 	}
-	void DecreaseSize()
-	{
-		if (transform.localScale.x <= 0.41f)
-			return;
-		transform.localScale = new Vector3(transform.localScale.x - 0.01f, transform.localScale.y, transform.localScale.z);
-	}
-	private IEnumerator RegenStamina()
-	{
-		yield return new WaitForSeconds(0.5f);
 
-		while(currentStamina < maxStamina)
-		{
-			currentStamina += maxStamina / 100;
-			staminaBar.value = currentStamina;
-			yield return regenTick;
-		}
-		regen = null;
+	private void OnEnable()
+	{
+		input.Gameplay.Enable();
+		input.Gameplay.Move.performed += OnMove;
+		input.Gameplay.Restart.performed += OnRestart;
+
+		BallController.gameOver += OnGameOver;
 	}
 
+	private void OnDisable()
+	{
+		input.Gameplay.Disable();
+		input.Gameplay.Move.performed -= OnMove;
+		input.Gameplay.Restart.performed -= OnRestart;
+
+		BallController.gameOver -= OnGameOver;
+	}
+
+	void OnGameOver()
+	{
+		isGameOver = true;
+	}
 }

@@ -9,36 +9,12 @@
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "d0918781-1552-4bf3-8523-e8c255db9687",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Shift",
-                    "type": "Value",
-                    "id": "b97930fd-52c2-47bc-95e0-3749ed63a45d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Move2",
-                    "type": "PassThrough",
-                    "id": "9dbd6a0f-5b8b-4cee-ac63-721c0a4086e0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Shift2",
-                    "type": "Value",
-                    "id": "2d82d993-4880-4e48-b478-53a4f6fd7c1b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "RestartButton",
+                    "name": "Restart",
                     "type": "PassThrough",
                     "id": "65192774-f1bf-43bc-a39e-c06138bc37d4",
                     "expectedControlType": "Button",
@@ -81,70 +57,37 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "4000f686-51f3-4222-982e-10ae4d116b2d",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "71714f95-653b-4156-a5c8-da1819a659fd",
+                    "name": "Arrow Keys",
+                    "id": "596a4ae2-ba5a-48fc-a93f-72bdb93c268e",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move2",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
-                    "id": "9beb84fc-0a64-4c46-ab57-a3439fa958cb",
+                    "id": "b8f57afc-16d2-4cda-85ab-6ee6a9b31f3b",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move2",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "c52ac0ef-9666-463a-9168-263135f49d88",
+                    "id": "c7c7ef83-c5bc-4157-a289-7aada8a9da54",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move2",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "4b4be75c-b188-471e-b82c-cc13b0979eb6",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shift",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2942548c-2e01-4c4e-82ef-db3982906dfd",
-                    "path": "<Keyboard>/rightCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shift2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -153,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RestartButton",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -164,7 +107,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RestartButton",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8ce17e4-2dc1-4727-aaf8-21c029858611",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

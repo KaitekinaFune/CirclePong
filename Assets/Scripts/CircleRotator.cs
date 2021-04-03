@@ -2,9 +2,10 @@
 
 public class CircleRotator : MonoBehaviour
 {
-    // Update is called once per frame
-    void FixedUpdate()
+    public Transform circle;
+
+    void Update()
     {
-        transform.Rotate(0, 0, 1 * Time.deltaTime);
+        circle.Rotate(Vector3.forward * 10 * Time.deltaTime);
     }
 }

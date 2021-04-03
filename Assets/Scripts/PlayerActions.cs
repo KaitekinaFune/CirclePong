@@ -22,36 +22,12 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""d0918781-1552-4bf3-8523-e8c255db9687"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Shift"",
-                    ""type"": ""Value"",
-                    ""id"": ""b97930fd-52c2-47bc-95e0-3749ed63a45d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Move2"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""9dbd6a0f-5b8b-4cee-ac63-721c0a4086e0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Shift2"",
-                    ""type"": ""Value"",
-                    ""id"": ""2d82d993-4880-4e48-b478-53a4f6fd7c1b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""RestartButton"",
+                    ""name"": ""Restart"",
                     ""type"": ""PassThrough"",
                     ""id"": ""65192774-f1bf-43bc-a39e-c06138bc37d4"",
                     ""expectedControlType"": ""Button"",
@@ -94,70 +70,37 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4000f686-51f3-4222-982e-10ae4d116b2d"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""71714f95-653b-4156-a5c8-da1819a659fd"",
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""596a4ae2-ba5a-48fc-a93f-72bdb93c268e"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move2"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""9beb84fc-0a64-4c46-ab57-a3439fa958cb"",
+                    ""id"": ""b8f57afc-16d2-4cda-85ab-6ee6a9b31f3b"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move2"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""c52ac0ef-9666-463a-9168-263135f49d88"",
+                    ""id"": ""c7c7ef83-c5bc-4157-a289-7aada8a9da54"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move2"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4b4be75c-b188-471e-b82c-cc13b0979eb6"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shift"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2942548c-2e01-4c4e-82ef-db3982906dfd"",
-                    ""path"": ""<Keyboard>/rightCtrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shift2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -166,7 +109,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RestartButton"",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -177,7 +120,18 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RestartButton"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8ce17e4-2dc1-4727-aaf8-21c029858611"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -189,10 +143,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Shift = m_Gameplay.FindAction("Shift", throwIfNotFound: true);
-        m_Gameplay_Move2 = m_Gameplay.FindAction("Move2", throwIfNotFound: true);
-        m_Gameplay_Shift2 = m_Gameplay.FindAction("Shift2", throwIfNotFound: true);
-        m_Gameplay_RestartButton = m_Gameplay.FindAction("RestartButton", throwIfNotFound: true);
+        m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -243,19 +194,13 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_Shift;
-    private readonly InputAction m_Gameplay_Move2;
-    private readonly InputAction m_Gameplay_Shift2;
-    private readonly InputAction m_Gameplay_RestartButton;
+    private readonly InputAction m_Gameplay_Restart;
     public struct GameplayActions
     {
         private @PlayerActions m_Wrapper;
         public GameplayActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
-        public InputAction @Shift => m_Wrapper.m_Gameplay_Shift;
-        public InputAction @Move2 => m_Wrapper.m_Gameplay_Move2;
-        public InputAction @Shift2 => m_Wrapper.m_Gameplay_Shift2;
-        public InputAction @RestartButton => m_Wrapper.m_Gameplay_RestartButton;
+        public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -268,18 +213,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                @Shift.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift;
-                @Shift.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift;
-                @Shift.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift;
-                @Move2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove2;
-                @Move2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove2;
-                @Move2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove2;
-                @Shift2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift2;
-                @Shift2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift2;
-                @Shift2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShift2;
-                @RestartButton.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestartButton;
-                @RestartButton.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestartButton;
-                @RestartButton.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestartButton;
+                @Restart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -287,18 +223,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Shift.started += instance.OnShift;
-                @Shift.performed += instance.OnShift;
-                @Shift.canceled += instance.OnShift;
-                @Move2.started += instance.OnMove2;
-                @Move2.performed += instance.OnMove2;
-                @Move2.canceled += instance.OnMove2;
-                @Shift2.started += instance.OnShift2;
-                @Shift2.performed += instance.OnShift2;
-                @Shift2.canceled += instance.OnShift2;
-                @RestartButton.started += instance.OnRestartButton;
-                @RestartButton.performed += instance.OnRestartButton;
-                @RestartButton.canceled += instance.OnRestartButton;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -306,9 +233,6 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnShift(InputAction.CallbackContext context);
-        void OnMove2(InputAction.CallbackContext context);
-        void OnShift2(InputAction.CallbackContext context);
-        void OnRestartButton(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
