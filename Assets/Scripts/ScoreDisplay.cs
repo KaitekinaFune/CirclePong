@@ -20,6 +20,7 @@ public class ScoreDisplay : MonoBehaviour
         highscore = PlayerPrefs.GetInt("Highscore", 0);
         score = 0;
         scoreText.gameObject.SetActive(true);
+        SetScore(scoreText, score);
         SetScore(highscoreText, highscore);
     }
 
